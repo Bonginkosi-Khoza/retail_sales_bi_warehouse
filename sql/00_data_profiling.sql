@@ -1,6 +1,6 @@
 -- 00_data_profiling.sql
--- Purpose: Run data quality checks on staging dataset and document issues found.
--- This ensures reproducibility for auditors, reviewer and portfolio demonstration.
+-- Purpose: Running data quality checks on staging dataset and document issues found.
+-- To ensure reproducibility for auditors, reviewer and portfolio demonstration.
 
 -- 1. Total row count
 SELECT COUNT(*) AS total_rows FROM stg_sales;
