@@ -107,7 +107,6 @@ WHERE CustomerID IS NOT NULL AND TRIM(CustomerID) <> ''
 ORDER BY CustomerID;
 
 -- DIM DATE
-DROP TABLE IF EXISTS dim_date;
 
 CREATE TABLE dim_date (
     date_key INTEGER PRIMARY KEY AUTOINCREMENT,
