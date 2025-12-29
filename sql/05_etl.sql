@@ -60,3 +60,15 @@ DROP TABLE dim_product;
 
 ALTER TABLE dim_prod RENAME TO dim_product;
 
+
+
+-- Duplicate check for dim_customer
+SELECT 
+    customer_id,
+    COUNT(*) AS occurrences
+FROM dim_customer
+GROUP BY customer_id
+HAVING occurrences > 1;
+
+SELECT COUNT(*) FROM dim_customer;
+
