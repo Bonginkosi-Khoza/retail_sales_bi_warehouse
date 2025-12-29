@@ -46,3 +46,17 @@ SELECT
 FROM dim_product
 GROUP BY product_code
 HAVING COUNT(*) > 1;
+
+-- removing duplicated in dim_product keeping only one record per product_code
+CREATE TABLE dim_prod AS
+SELECT 
+   MIN(product_key) AS product_key,
+   product_code,
+   product_description
+FROM dim_product
+GROUP BY product_code;
+
+DROP TABLE dim_product;
+
+ALTER TABLE dim_prod RENAME TO dim_product;
+

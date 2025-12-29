@@ -41,3 +41,7 @@ Dataset: Retail Sales (541,910 rows)
 - Risk: Leads to inflated `fact_sales` row count during joins.
 - Fix Approach: Keep first occurrence per product_code, deduplicate dimension.
 
+- Fix Applied: Deduplicated dim_product by recreating the table keeping MIN(product_key) per product_code.
+- Result: Surrogate keys preserved, duplicate records removed.
+- Validation: Expect dim_product count to reduce from 5749 to (5749 - 1321).
+ 
