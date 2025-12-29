@@ -21,14 +21,14 @@ CREATE TABLE fact_sales (
 -- INSERTing data
 INSERT INTO fact_sales (invoice_id, date_key, customer_key, product_key, country_name, Quantity, UnitPrice, total_price)
 SELECT
-    s.InvoiceNo AS invoice_id,
+    s.Invoice AS invoice_id,
     d.date_key,
     c.customer_key,
     p.product_key,
     co.country_name,
     s.Quantity,
-    s.UnitPrice,
-    (s.Quantity * s.UnitPrice) AS total_price
+    s.Price,
+    (s.Quantity * s.Price) AS total_price
 FROM stg_sales s
 LEFT JOIN dim_date d
     ON SUBSTR(s.InvoiceDate,1,10) = d.date_value

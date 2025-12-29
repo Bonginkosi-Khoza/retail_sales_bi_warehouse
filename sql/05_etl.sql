@@ -72,3 +72,20 @@ HAVING occurrences > 1;
 
 SELECT COUNT(*) FROM dim_customer;
 
+
+-- Check for duplicate date entries
+
+SELECT date_value, COUNT(*) AS occurences
+FROM dim_date
+GROUP BY date_value
+HAVING occurences > 1;
+
+-- counting hte total row in dim_table
+SELECT COUNT(*) AS total_dates FROM dim_date;
+
+--checking for invalid or empty date formats
+SELECT * 
+FROM dim_date
+WHERE date_value IS NULL
+   OR TRIM(date_value) = ''
+   OR length(date_value) <10;  -- date not in YYYY/MM/DD format

@@ -48,3 +48,14 @@ Dataset: Retail Sales (541,910 rows)
 
 ## no duplicated for Customer Dimension
 
+## Date Dimension Quality Check
+
+| Check | Result |
+|---|---|
+| Total rows in dim_date | 305 unique dates |
+| Duplicate date_values | None (0) |
+| Invalid/Empty date formats | None |
+
+**Conclusion:**  
+dim_date is clean and contains properly formatted unique dates.  
+NULL dates appearing in fact_sales will be investigated in the fact load step and not within dim_date itself.
