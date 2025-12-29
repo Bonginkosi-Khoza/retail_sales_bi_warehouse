@@ -33,10 +33,16 @@ UPDATE stg_sales
 SET ReturnFlag = 1
 WHERE Quantity < 0;
 
-
-
--- 6. Remove leading/trailing spaces from StockCode
+-- 6. Removing leading/trailing spaces from StockCode
 UPDATE stg_sales
 SET StockCode = TRIM(StockCode)
 WHERE StockCode IS NOT NULL;
 
+--====================================================================
+-- Checking for duplicated records in dim_product
+SELECT 
+    product_code,
+    COUNT(*) AS occurrences
+FROM dim_product
+GROUP BY product_code
+HAVING COUNT(*) > 1;

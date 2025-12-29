@@ -20,3 +20,24 @@ Dataset: Retail Sales (541,910 rows)
 - Convert InvoiceDate → DATE format on load
 - Negative quantities kept, flagged as returns
 - Standardize text data & trim whitespace
+
+### Issue: Fact table row count higher than staging
+
+**Observed behavior:**  
+- stg_sales rows: 541,910  
+- fact_sales rows: 794,950  
+- Unexpected increase ~250k rows.
+
+**Possible cause:**  
+- Duplicate rows in dimension tables caused by non-unique keys.  
+- Joins in fact insert multiplied rows.
+
+**Date reported:** 2025-12-28  
+**Reporter:** Bonginkosi Khoza
+
+## Product Dimension Duplicate Issue
+- During validation, 1321 duplicate product entries were found in `dim_product`.
+- Cause: Staging load created multiple rows for the same product_code.
+- Risk: Leads to inflated `fact_sales` row count during joins.
+- Fix Approach: Keep first occurrence per product_code, deduplicate dimension.
+
